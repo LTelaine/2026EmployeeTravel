@@ -131,6 +131,22 @@ li.travel .name{color:var(--ink-2);}
 .dress{margin-top:7px;padding:6px 10px;border-left:3px solid var(--gold);
   background:var(--gold-soft);border-radius:0 7px 7px 0;font-size:.78rem;color:var(--ink-2)}
 .dress b{color:var(--ink)}
+.pk h3{font-size:.9rem;margin:16px 0 6px;color:var(--ink)}
+.pk > h3:first-child{margin-top:0}
+.pk label{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--ink-2);
+  padding:5px 0;cursor:pointer;line-height:1.55}
+.pk input{flex:none;width:18px;height:18px;margin:3px 0 0;accent-color:var(--indigo);
+  cursor:pointer}
+.pk label b{color:var(--ink)}
+.pk input:checked + span{color:var(--ink-3);text-decoration:line-through}
+.pk input:checked + span b{color:var(--ink-3)}
+.pk h3.no{color:var(--gold)}
+.pkbar{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-top:15px;padding-top:11px;border-top:1px solid var(--line);
+  font-size:.78rem;color:var(--ink-3)}
+.pkbar button{font:inherit;font-size:.76rem;padding:4px 11px;border-radius:999px;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink-2);cursor:pointer}
+.pkbar button:hover{border-color:var(--indigo);color:var(--indigo)}
 details.altplan{margin-top:9px;border:1px solid var(--line);border-radius:10px;
   background:var(--surface);overflow:hidden}
 details.altplan summary{cursor:pointer;padding:9px 12px;font-size:.85rem;font-weight:600;
@@ -297,6 +313,7 @@ body.lb-open{overflow:hidden}
     <li><a href="#hotel">住宿</a></li>
     <li><a href="#zone">地區</a></li>
     <li><a href="#info">實用</a></li>
+    <li><a href="#pack">打包</a></li>
     <li><a href="#rules">注意事項</a></li>
   </ul>
 </nav>
@@ -315,6 +332,59 @@ body.lb-open{overflow:hidden}
 </section>
 
 <p class="detail" style="margin-top:18px">時間軸順序依手冊推排，用餐位置為推估；只有標出的時刻是手冊寫明的，實際以導遊為準。</p>
+<section id="pack">
+  <div class="eyebrow"><h2>行前打包清單</h2><span>可以直接勾</span></div>
+  <div class="card pk" id="packlist">
+      <h3>證件與錢</h3>
+      <label><input type="checkbox" id="pk1"><span>護照（<b>效期要超過 6 個月</b>；已交給雄獅處理就不用帶）</span></label>
+      <label><input type="checkbox" id="pk2"><span>備用護照相片 2 張</span></label>
+      <label><input type="checkbox" id="pk3"><span>國際信用卡</span></label>
+      <label><input type="checkbox" id="pk4"><span><b>等值 2 萬泰銖的現金</b>（海關抽查，信用卡不算）</span></label>
+      <label><input type="checkbox" id="pk5"><span>泰銖小額紙鈔（給小費用，<b>不能給硬幣</b>）</span></label>
+      <label><input type="checkbox" id="pk6"><span>行程表、說明會資料與重要電話一覽表</span></label>
+      <h3>衣物鞋襪</h3>
+      <label><input type="checkbox" id="pk7"><span><b>薄外套（一定要帶）</b> —— 夜間可能到 17–18 度，山區與車上冷氣也用得到</span></label>
+      <label><input type="checkbox" id="pk8"><span>夏季短袖為主（白天 20–30 度）</span></label>
+      <label><input type="checkbox" id="pk9"><span><b>有袖上衣＋過膝長褲或長裙</b>（進寺廟用，<b>機場集合就要穿好</b>）</span></label>
+      <label><input type="checkbox" id="pk10"><span><b>一套深色衣物</b>（國喪期間參觀寺廟與王室場所建議）</span></label>
+      <label><input type="checkbox" id="pk11"><span>好走的包腳鞋（慢跑鞋、走路鞋）</span></label>
+      <label><input type="checkbox" id="pk12"><span>耐磨拖鞋或不易鬆跨的涼鞋</span></label>
+      <label><input type="checkbox" id="pk13"><span>太陽眼鏡、遮陽帽</span></label>
+      <h3>3C 與電器</h3>
+      <label><input type="checkbox" id="pk14"><span>充電器（<b>插頭同台灣兩孔，不用轉接頭</b>）</span></label>
+      <label><input type="checkbox" id="pk15"><span>延長線或多孔插座（多台裝置一起充比較方便）</span></label>
+      <label><input type="checkbox" id="pk16"><span><b>行動電源：隨身手提，絕對不可託運</b>（每人最多 2 顆、需有清楚標示）</span></label>
+      <label><input type="checkbox" id="pk17"><span>手持風扇或吹風機：<b>先確認是鋰電池（Li-ion）</b></span></label>
+      <label><input type="checkbox" id="pk18"><span>高功率電器（電棒捲、吹風機）機身要標示 <b>100V–240V</b></span></label>
+      <label><input type="checkbox" id="pk19"><span>相機、電池、耳機</span></label>
+      <label><input type="checkbox" id="pk20"><span>備用眼鏡</span></label>
+      <h3>盥洗與個人用品</h3>
+      <label><input type="checkbox" id="pk21"><span><b>牙刷牙膏（飯店不一定提供）</b></span></label>
+      <label><input type="checkbox" id="pk22"><span><b>剐鬍刀（東南亞飯店基本上不會主動提供）</b></span></label>
+      <label><input type="checkbox" id="pk23"><span>慣用的洗髮精、沐浴乳、潤髮</span></label>
+      <label><input type="checkbox" id="pk24"><span>防曬用品（紫外線很強）</span></label>
+      <label><input type="checkbox" id="pk25"><span>習慣性用藥、暈車藥、感冒藥</span></label>
+      <label><input type="checkbox" id="pk26"><span>生理用品</span></label>
+      <label><input type="checkbox" id="pk27"><span>口罩、防蚊液、乾洗手</span></label>
+      <h3>隨身與雜項</h3>
+      <label><input type="checkbox" id="pk28"><span><b>1 公升透明夾鏈袋</b>（裝所有 100ml 以下的液體，每人限一袋）</span></label>
+      <label><input type="checkbox" id="pk29"><span>摺疊傘（<b>收納後 60 公分以下</b>才能隨身）</span></label>
+      <label><input type="checkbox" id="pk30"><span>自拍棒（同樣 60 公分以下）</span></label>
+      <label><input type="checkbox" id="pk31"><span>貼身包或後背包（託運、手提之外還可再帶一個）</span></label>
+      <label><input type="checkbox" id="pk32"><span>環保水壶（當地水不能生飲，要喝甁裝水）</span></label>
+      <label><input type="checkbox" id="pk33"><span>購物備用袋、裝髒衣物的塑膠袋</span></label>
+      <label><input type="checkbox" id="pk34"><span>紙筆文具</span></label>
+      <h3 class="no">❌ 不能帶的</h3>
+      <label><input type="checkbox" id="pk35"><span><b>加熱菸、電子菸</b> —— 在泰國違法，不可攜帶入境</span></label>
+      <label><input type="checkbox" id="pk36"><span><b>剪刀、金屬指甲銼、鏊子</b> —— 要放託運，不能隨身</span></label>
+      <label><input type="checkbox" id="pk37"><span><b>防狼噴霧</b> —— 隨身與託運都不行</span></label>
+      <label><input type="checkbox" id="pk38"><span>沒有電量標示的行動電源、非鋰電池的手持風扇</span></label>
+      <label><input type="checkbox" id="pk39"><span>打火機隨身只能 1 個（非防風、非藍焙）</span></label>
+    <div class="pkbar"><span class="pkcount"></span><button type="button" class="pkclear">清除勾選</button></div>
+    <p class="mapsrc">綜合手冊第 35 頁的「攜帶物品核對」與行前說明會的講解。勾選只存在這台裝置的瀏覽器裡，換手機不會同步，清除瀏覽資料會消失。</p>
+  </div>
+</section>
+
 <div id="days">
   <noscript>
     <section>
@@ -1094,6 +1164,37 @@ body.lb-open{overflow:hidden}
   if (vshots) vshots.appendChild(slider(V.pics));
   var kshots = document.getElementById("shots-kantary");
   if (kshots) kshots.appendChild(slider(K.pics));
+  var pk = document.getElementById("packlist");
+  if (pk) {
+    var PKEY = "cnx-pack-2026";
+    var boxes = pk.querySelectorAll("input[type=checkbox]");
+    var saved = {};
+    try { saved = JSON.parse(localStorage.getItem(PKEY) || "{}") || {}; } catch (e) { saved = {}; }
+    var pkcount = pk.querySelector(".pkcount");
+    var tally = function () {
+      var n = 0;
+      for (var i = 0; i < boxes.length; i++) { if (boxes[i].checked) n++; }
+      if (pkcount) pkcount.textContent = "\u5df2\u52fe " + n + " / " + boxes.length;
+    };
+    var savePk = function () {
+      var o = {};
+      for (var i = 0; i < boxes.length; i++) { if (boxes[i].checked) o[boxes[i].id] = 1; }
+      try { localStorage.setItem(PKEY, JSON.stringify(o)); } catch (e) {}
+    };
+    for (var bi = 0; bi < boxes.length; bi++) {
+      if (saved[boxes[bi].id]) boxes[bi].checked = true;
+      boxes[bi].addEventListener("change", function () { savePk(); tally(); });
+    }
+    var clr = pk.querySelector(".pkclear");
+    if (clr) {
+      clr.addEventListener("click", function () {
+        for (var i = 0; i < boxes.length; i++) { boxes[i].checked = false; }
+        savePk();
+        tally();
+      });
+    }
+    tally();
+  }
   wireCopy(document);
 })();
 </script>
