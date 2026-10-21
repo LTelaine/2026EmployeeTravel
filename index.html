@@ -131,6 +131,9 @@ li.travel .name{color:var(--ink-2);}
 .dress{margin-top:7px;padding:6px 10px;border-left:3px solid var(--gold);
   background:var(--gold-soft);border-radius:0 7px 7px 0;font-size:.78rem;color:var(--ink-2)}
 .dress b{color:var(--ink)}
+.tip{margin-top:7px;padding:6px 10px;border-radius:8px;background:var(--indigo-soft);
+  font-size:.78rem;color:var(--ink-2);line-height:1.55}
+.tip b{color:var(--indigo)}
 .pk h3{font-size:.9rem;margin:16px 0 6px;color:var(--ink)}
 .pk > h3:first-child{margin-top:0}
 .pk label{display:flex;gap:10px;align-items:flex-start;font-size:.85rem;color:var(--ink-2);
@@ -147,6 +150,13 @@ li.travel .name{color:var(--ink-2);}
 .pkbar button{font:inherit;font-size:.76rem;padding:4px 11px;border-radius:999px;
   border:1px solid var(--line);background:var(--surface);color:var(--ink-2);cursor:pointer}
 .pkbar button:hover{border-color:var(--indigo);color:var(--indigo)}
+details.pkwrap > summary{cursor:pointer;font-size:.92rem;font-weight:600;color:var(--indigo);
+  list-style:none;display:flex;align-items:baseline;gap:8px}
+details.pkwrap > summary::-webkit-details-marker{display:none}
+details.pkwrap > summary::after{content:"\00a0\25be";color:var(--ink-3)}
+details.pkwrap[open] > summary::after{content:"\00a0\25b4"}
+details.pkwrap .pkcount{margin-left:auto;font-weight:500;font-size:.78rem;color:var(--ink-3)}
+details.pkwrap > .pk{margin-top:13px;padding-top:12px;border-top:1px solid var(--line)}
 details.altplan{margin-top:9px;border:1px solid var(--line);border-radius:10px;
   background:var(--surface);overflow:hidden}
 details.altplan summary{cursor:pointer;padding:9px 12px;font-size:.85rem;font-weight:600;
@@ -336,7 +346,10 @@ body.lb-open{overflow:hidden}
 <p class="detail" style="margin-top:18px">時間軸順序依手冊推排，用餐位置為推估；只有標出的時刻是手冊寫明的，實際以導遊為準。</p>
 <section id="pack">
   <div class="eyebrow"><h2>行前打包清單</h2><span>可以直接勾</span></div>
-  <div class="card pk" id="packlist">
+  <div class="card">
+    <details class="pkwrap" id="packlist">
+      <summary>展開清單<span class="pkcount"></span></summary>
+      <div class="pk">
       <h3>證件與錢</h3>
       <label><input type="checkbox" id="pk1"><span>護照（<b>效期要超過 6 個月</b>；已交給雄獅處理就不用帶）</span></label>
       <label><input type="checkbox" id="pk2"><span>備用護照相片 2 張</span></label>
@@ -382,8 +395,10 @@ body.lb-open{overflow:hidden}
       <label><input type="checkbox" id="pk37"><span><b>防狼噴霧</b> —— 隨身與託運都不行</span></label>
       <label><input type="checkbox" id="pk38"><span>沒有電量標示的行動電源、非鋰電池的手持風扇</span></label>
       <label><input type="checkbox" id="pk39"><span>打火機隨身只能 1 個（非防風、非藍焙）</span></label>
-    <div class="pkbar"><span class="pkcount"></span><button type="button" class="pkclear">清除勾選</button></div>
+    <div class="pkbar"><span></span><button type="button" class="pkclear">清除勾選</button></div>
     <p class="mapsrc">綜合手冊第 35 頁的「攜帶物品核對」與行前說明會的講解。勾選只存在這台裝置的瀏覽器裡，換手機不會同步，清除瀏覽資料會消失。</p>
+      </div>
+    </details>
   </div>
 </section>
 
@@ -737,9 +752,10 @@ body.lb-open{overflow:hidden}
     tel: "+66-53-222-111"
   };
 
-  function hotel(h, label, shot) {
+  function hotel(h, label, shot, tip) {
     var o = { t: "hotel", name: h.zh + "（" + label + "）", q: h.q, zone: "住宿", addr: h.addr, tel: h.tel };
     if (shot) o.shots = h.pics;
+    if (tip) o.tip = tip;
     return o;
   }
 
@@ -771,7 +787,7 @@ body.lb-open{overflow:hidden}
           dress: "<b>服裝提醒</b>：今天第一站就是寺廟，<b>機場集合時就要穿好</b> —— 上衣有袖、褲裙過膝。真的沒帶，雙龍寺外面有沙龍布可以包住下半身。國喪期間，手冊建議參觀寺廟穿深色系。",
           shots: ["img/doi-suthep.jpg"] },
         { t: "meal", name: "晚餐・王府帝王宴 ＋ 每人一顆椰子", shots: ["img/khantoke.jpg"] },
-        hotel(V, "入住", 1)
+        hotel(V, "入住", 1, "<b>小費</b>：請飯店服務生送行李的話，<b>行李小費每件約 20 泰銖</b>；床頭小費每間每天約 20 泰銖，離開房間前放在枕邊。<b>一律給紙鈔，放硬幣在泰國是另一個意思。</b>")
       ]
     },
     {
@@ -795,7 +811,7 @@ body.lb-open{overflow:hidden}
           detail: "騎單車＋甜甜圈漂漂河＋水上鞦韆＋天空之門＋網紅鳥巢＋鳥巢鞦韆＋體驗泰服＋涼拌木瓜沙拉 DIY＋水燈 DIY＋放水燈祈福",
           shots: ["img/lanna-valley.jpg", "img/lanna-valley-2.jpg"] },
         { t: "meal", name: "晚餐・熱帶雨林複合式餐廳 — 仙氣 Chom Café", shots: ["img/chom-cafe.jpg"] },
-        hotel(V, "回宿")
+        hotel(V, "回宿", 0, "<b>小費</b>：床頭小費 20 泰銖／間。忘了放的話，隔天補放 40 泰銖也可以。")
       ]
     },
     {
@@ -805,9 +821,10 @@ body.lb-open{overflow:hidden}
       note: "<b>今天是三梯大會師。</b>晚餐大約吃到九點，第三梯車程較遠、回飯店會比較晚，旅行社會協調先備好房卡直接發。今天也要換飯店。",
       items: [
         { t: "meal", name: "早餐・飯店內用" },
-        hotel(V, "退房、行李上車"),
+        hotel(V, "退房、行李上車", 0, "<b>小費</b>：今天換飯店，<b>行李小費每件約 20 泰銖</b>；最後一晚的床頭小費記得留。"),
         { t: "spot", name: "友善大象營", q: "友善大象營 清邁", zone: "清邁北郊", approx: true,
           detail: "大象好食光＋與象戲水趣＋製作大象食物＋餵食大象",
+          tip: "<b>小費行情</b>（手冊）：騎大象每次約 <b>50 泰銖</b>；與各式表演者拍照每人每次 <b>100–150 泰銖</b>。今天的行程是餵食與戲水，給不給看個人。",
           shots: ["img/elephant-1.jpg", "img/elephant-2.jpg"] },
         { t: "meal", name: "午餐・園區內簡餐" },
         { t: "spot", name: "藍廟 Wat Ban Den", q: "Wat Ban Den Chiang Mai", zone: "清邁北郊",
@@ -825,7 +842,8 @@ body.lb-open{overflow:hidden}
           shots: ["img/one-nimman.jpg", "img/one-nimman-2.jpg",
                   "img/one-nimman-3.jpg", "img/one-nimman-4.jpg"] },
         { t: "travel", name: "泰式按摩 2 小時",
-          detail: "含在行程內，不含小費（按摩師小費約 100–200 泰銖）。不參加要事先登記，會退費。",
+          detail: "按摩費用含在行程內，不參加要事先登記，會退費。",
+          tip: "<b>小費</b>：按摩師小費視服務品質與專業水準彈性給，手冊行情 <b>100–200 泰銖</b>。<b>行程只含按摩費用，不含小費。</b>",
           alt: "<summary>不按摩的話，這兩小時可以做什麼</summary>"
              + "<p>行前說明會講過：不參加的人會先回飯店，按摩的由導遊帶走。<b>要事先登記，而且會退費。</b></p>"
              + "<p><b>飯店就在尼曼商圈</b> —— Kantary Hills 的地址就在 Nimmanahaeminda Road 上，所以「回飯店」等於直接待在最好逛的那一區，不用再移動。</p>"
@@ -857,7 +875,7 @@ body.lb-open{overflow:hidden}
              + "<p class=\"src\">One Nimman 與 Maya 的介紹整理自兩篇旅遊部落格，不是手冊內容，樓層與店家可能已經變動；退費規則與飯店地址則來自行前說明會與手冊。</p>" },
         { t: "meal", name: "晚餐・米其林畢比登推薦 — 謝桐興酒樓",
           shots: ["img/xie-1.jpg", "img/xie-2.jpg", "img/xie-3.jpg", "img/xie-4.jpg"] },
-        hotel(K, "入住", 1)
+        hotel(K, "入住", 1, "<b>小費</b>：床頭小費每間每天約 <b>20 泰銖</b>，離開房間前放。<b>要放紙鈔，不能放硬幣</b>。")
       ]
     },
     {
@@ -881,6 +899,7 @@ body.lb-open{overflow:hidden}
           detail: "DIY 彩繪馬克杯", shots: ["img/ceramic-diy.jpg"] },
         { t: "spot", name: "南邦古城・馬車", q: "Lampang Old Town horse carriage", zone: "南邦",
           detail: "距清邁 100 公里、車程約 1.5 小時。泰國唯一的馬車之城，也被稱為「最後的天堂」。",
+          tip: "<b>小費</b>：坐馬車每次約 <b>50 泰銖</b>。",
           shots: ["img/lampang-1.jpg", "img/lampang-2.jpg"] },
         { t: "meal", name: "晚餐・米其林推薦 — 紅橋泰式餐廳", shots: ["img/red-bridge.jpg"] },
         { t: "spot", name: "清邁夜市（昌康路）", q: "Chang Klan Road Chiang Mai Night Bazaar", zone: "尼曼・市區",
@@ -915,7 +934,7 @@ body.lb-open{overflow:hidden}
              + "</ul>"
              + "<p class=\"srclink\"><a href=\"https://www.bigfang.tw/blog/post/sunday-nightmarket-chiangmai\" target=\"_blank\" rel=\"noopener\">清邁週日夜市介紹原文 →</a></p>",
           shots: ["img/night-bazaar.jpg"] },
-        hotel(K, "回宿")
+        hotel(K, "回宿", 0, "<b>小費</b>：床頭小費每間每天約 <b>20 泰銖</b>，離開房間前放。<b>要放紙鈔，不能放硬幣</b>。")
       ]
     },
     {
@@ -925,7 +944,7 @@ body.lb-open{overflow:hidden}
       note: "退稅要在機場辦，<b>護照、退稅單、買的東西</b>先整理好再去 check-in。",
       items: [
         { t: "meal", name: "早餐・飯店內用" },
-        hotel(K, "退房"),
+        hotel(K, "退房", 0, "<b>小費</b>：<b>最後一晚的床頭小費別忘了放</b>；請人搬行李的話每件約 20 泰銖。泰銖留一點在身上，機場還用得到。"),
         { t: "spot", name: "清邁機場", clock: "11:50", q: "Chiang Mai International Airport",
           zone: "清邁市區", detail: "BR258 清邁 11:50 起飛。享用早餐後稍晚專車前往機場。",
           shots: ["img/departure.jpg"] },
@@ -1076,6 +1095,11 @@ body.lb-open{overflow:hidden}
       var dn = el("div", "dress");
       dn.innerHTML = item.dress;
       li.appendChild(dn);
+    }
+    if (item.tip) {
+      var tp = el("div", "tip");
+      tp.innerHTML = item.tip;
+      li.appendChild(tp);
     }
     if (item.alt) {
       var dt = document.createElement("details");
