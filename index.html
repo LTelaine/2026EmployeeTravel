@@ -1,0 +1,1019 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="2026 員旅清邁 A 團（10/22–10/26）的隨身行程頁：每日時間軸、景點照片、路線地圖與住宿資訊。">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1B5E8C">
+<title>清邁五日隨身手冊</title>
+<style>
+:root{color-scheme:light;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+body{margin:0;font:14px system-ui,-apple-system,"Segoe UI",sans-serif}
+img{max-width:100%}
+[hidden]{display:none!important}
+</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif&display=swap">
+<style>
+/* 版面：單欄縱向時間軸。每天＝飯店→景點→用餐串成一條線；景點下方直接顯示照片，點名稱才展開地圖面板 */
+:root{
+  --paper:#F4F6F8; --surface:#FFFFFF; --ink:#141D26; --ink-2:#51606E; --ink-3:#64748B;
+  --line:#DCE3EA; --indigo:#1B5E8C; --gold:#9C6B1E; --gold-soft:#F3E7D0; --indigo-soft:#E4EEF6;
+  --hero:#1B5E8C; --on-hero:#FFFFFF; --meal:#8A6A2F; --meal-soft:#F6EEDD;
+  --map-base:#E6E2D7; --map-land:#F4F2EA; --map-line:#C6C0B1;
+  --pin:#1B5E8C; --on-pin:#FFFFFF; --scrim:rgba(14,22,30,.74);
+  --shadow:0 1px 2px rgba(20,29,38,.06),0 8px 24px -16px rgba(20,29,38,.28);
+  --serif:"Instrument Serif",Georgia,"Songti TC",serif;
+  --sans:system-ui,-apple-system,"Segoe UI","PingFang TC","Microsoft JhengHei","Noto Sans TC",sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"Cascadia Mono",Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#0D151D; --surface:#15202C; --ink:#E7EEF4; --ink-2:#A3B3C1; --ink-3:#8DA0AE;
+  --line:#243343; --indigo:#6FB2E0; --gold:#DCAE55; --gold-soft:#2A2113; --indigo-soft:#132534;
+  --hero:#143F5E; --meal:#D7B06A; --meal-soft:#241D10;
+  --map-base:#141E29; --map-land:#1F2D3C; --map-line:#33465B;
+  --pin:#5FA8DC; --on-pin:#07131D; --scrim:rgba(0,0,0,.82);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -18px rgba(0,0,0,.9);
+  color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --paper:#0D151D; --surface:#15202C; --ink:#E7EEF4; --ink-2:#A3B3C1; --ink-3:#8DA0AE;
+  --line:#243343; --indigo:#6FB2E0; --gold:#DCAE55; --gold-soft:#2A2113; --indigo-soft:#132534;
+  --hero:#143F5E; --meal:#D7B06A; --meal-soft:#241D10;
+  --map-base:#141E29; --map-land:#1F2D3C; --map-line:#33465B;
+  --pin:#5FA8DC; --on-pin:#07131D; --scrim:rgba(0,0,0,.82);
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 10px 28px -18px rgba(0,0,0,.9);
+  color-scheme:dark;}
+
+body{background:var(--paper);color:var(--ink);font-family:var(--sans);line-height:1.65;
+  -webkit-text-size-adjust:100%;}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);
+  z-index:10;background:var(--hero);}
+.wrap{max-width:680px;margin:0 auto;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0 48px;}
+h1,h2,h3{text-wrap:balance;margin:0;}
+p{margin:0;}
+a{color:var(--indigo);}
+img{display:block;}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:4px;}
+
+.hero{background:var(--hero);color:var(--on-hero);
+  margin-left:calc(-1*max(16px,env(safe-area-inset-left,0px)));
+  margin-right:calc(-1*max(16px,env(safe-area-inset-right,0px)));
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:26px 22px;}
+.hero .kicker{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;opacity:.8;}
+.hero h1{font-size:2rem;line-height:1.15;margin-block:6px 10px;font-weight:700;letter-spacing:.02em;}
+.hero .dates{font-family:var(--serif);font-size:1.5rem;letter-spacing:.04em;}
+.hero .sub{font-size:.84rem;opacity:.88;margin-top:4px;}
+
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:var(--surface);
+  border-bottom:1px solid var(--line);
+  margin-left:calc(-1*max(16px,env(safe-area-inset-left,0px)));
+  margin-right:calc(-1*max(16px,env(safe-area-inset-right,0px)));}
+nav ul{display:flex;gap:4px;list-style:none;margin:0;overflow-x:auto;scrollbar-width:none;
+  padding-block:9px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));}
+nav ul::-webkit-scrollbar{display:none}
+nav a{display:block;white-space:nowrap;padding:5px 11px;border-radius:999px;font-size:.84rem;
+  text-decoration:none;color:var(--ink-2);}
+nav a:hover{background:var(--indigo-soft);color:var(--indigo);}
+
+section{margin-top:26px;scroll-margin-top:64px;}
+.eyebrow{display:flex;align-items:baseline;gap:9px;margin-bottom:11px;}
+.eyebrow h2{font-size:1.06rem;letter-spacing:.04em;}
+.eyebrow span{font-size:.74rem;color:var(--ink-3);letter-spacing:.1em;}
+
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;
+  box-shadow:var(--shadow);padding:16px;}
+.card + .card{margin-top:12px;}
+
+.day{scroll-margin-top:72px;}
+.day-head{display:flex;align-items:flex-start;gap:13px;padding-bottom:13px;
+  border-bottom:1px dashed var(--line);}
+.daynum{font-family:var(--serif);font-size:2.5rem;line-height:.9;color:var(--gold);flex:none;
+  font-variant-numeric:tabular-nums;}
+.day-head .meta{min-width:0;flex:1;}
+.day-head h3{font-size:1.02rem;}
+.day-head .date{font-size:.8rem;color:var(--ink-3);letter-spacing:.06em;margin-top:2px;}
+
+/* 時間軸 */
+ol.line{list-style:none;margin:14px 0 0;padding:0;}
+ol.line > li{position:relative;padding:0 0 16px 23px;}
+ol.line > li::before{content:"";position:absolute;left:3px;top:7px;width:9px;height:9px;
+  border-radius:50%;background:var(--indigo);box-shadow:0 0 0 3px var(--surface);}
+ol.line > li::after{content:"";position:absolute;left:7px;top:18px;bottom:-2px;width:1px;
+  background:var(--line);}
+ol.line > li:last-child{padding-bottom:0;}
+ol.line > li:last-child::after{display:none;}
+li.meal::before{background:var(--meal);width:7px;height:7px;left:4px;top:9px;}
+li.hotel::before{background:var(--gold);}
+li.travel::before{background:var(--ink-3);}
+
+.rowtop{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
+.clock{font-family:var(--mono);font-size:.78rem;color:var(--gold);flex:none;
+  font-variant-numeric:tabular-nums;}
+.name{font-weight:600;color:var(--ink);font-size:.97rem;}
+button.name{font-family:inherit;font-size:.97rem;background:none;border:0;padding:0;
+  cursor:pointer;text-align:left;color:var(--ink);font-weight:600;
+  border-bottom:1px solid var(--indigo);display:inline-flex;align-items:center;gap:5px;}
+button.name .pin{color:var(--indigo);font-size:.82em;}
+button.name[aria-expanded="true"]{color:var(--indigo);}
+li.meal .name{font-weight:500;color:var(--meal);font-size:.9rem;}
+li.travel .name{color:var(--ink-2);}
+.detail{font-size:.84rem;color:var(--ink-2);margin-top:3px;}
+.approx{font-size:.74rem;color:var(--gold);margin-top:3px;}
+.dress{margin-top:7px;padding:6px 10px;border-left:3px solid var(--gold);
+  background:var(--gold-soft);border-radius:0 7px 7px 0;font-size:.78rem;color:var(--ink-2)}
+.dress b{color:var(--ink)}
+details.altplan{margin-top:9px;border:1px solid var(--line);border-radius:10px;
+  background:var(--surface);overflow:hidden}
+details.altplan summary{cursor:pointer;padding:9px 12px;font-size:.85rem;font-weight:600;
+  color:var(--indigo);list-style:none}
+details.altplan summary::-webkit-details-marker{display:none}
+details.altplan summary::after{content:"\00a0\25be";color:var(--ink-3)}
+details.altplan[open] summary::after{content:"\00a0\25b4"}
+details.altplan > *:not(summary){padding:0 12px;font-size:.82rem;color:var(--ink-2)}
+details.altplan p{margin:0 0 8px}
+details.altplan b{color:var(--ink)}
+details.altplan ul{margin:0 0 8px;padding-left:30px}
+details.altplan li{margin-bottom:3px}
+details.altplan p.warn{color:var(--gold)}
+details.altplan p.warn b{color:var(--gold)}
+details.altplan > :last-child{padding-bottom:11px}
+details.altplan h4{margin:0 0 6px;padding:11px 12px 0;font-size:.85rem;color:var(--ink);
+  border-top:1px solid var(--line)}
+details.altplan h4:first-of-type{border-top:0;padding-top:2px}
+details.altplan p.src{font-size:.72rem;color:var(--ink-3)}
+
+/* 照片 slider */
+.shots{margin-top:9px;}
+.strip{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;
+  scrollbar-width:none;border-radius:11px;}
+.strip::-webkit-scrollbar{display:none}
+.strip img{flex:0 0 100%;scroll-snap-align:center;width:100%;height:auto;aspect-ratio:4/3;
+  object-fit:cover;border-radius:11px;background:var(--indigo-soft);}
+.dots{display:flex;gap:5px;justify-content:center;margin-top:7px;}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--line);display:block;}
+.dots i.on{background:var(--indigo);}
+.shotcap{font-size:.72rem;color:var(--ink-3);margin-top:5px;}
+
+/* 地圖面板 */
+.panel{margin-top:10px;padding:12px;border-radius:11px;background:var(--indigo-soft);
+  border:1px solid var(--line);}
+.panel .zone{font-size:.76rem;color:var(--ink-2);letter-spacing:.06em;}
+.panel .addr{font-family:var(--mono);font-size:.8rem;color:var(--ink);margin-top:7px;
+  word-break:break-word;}
+.acts{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px;}
+.acts a,.acts button{font:inherit;font-size:.82rem;font-weight:600;padding:7px 12px;
+  border-radius:999px;text-decoration:none;cursor:pointer;
+  border:1px solid var(--indigo);background:var(--surface);color:var(--indigo);}
+.acts a:hover,.acts button:hover{background:var(--indigo);color:var(--surface);}
+.panel .frame{margin-top:10px;border-radius:9px;overflow:hidden;border:1px solid var(--line);}
+.panel .frame iframe{display:block;width:100%;height:260px;border:0;}
+.panel .hint{font-size:.72rem;color:var(--ink-3);margin-top:8px;}
+
+.routebtn{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-top:14px;padding:11px 14px;border-radius:10px;text-decoration:none;
+  background:var(--indigo-soft);color:var(--indigo);font-weight:600;font-size:.88rem;}
+.routebtn .arrow{font-family:var(--mono);}
+.routebtn:hover{filter:brightness(.97);}
+
+.note{margin-top:12px;padding:9px 12px;border-left:3px solid var(--gold);
+  background:var(--gold-soft);border-radius:0 8px 8px 0;font-size:.8rem;color:var(--ink-2);}
+.note b{color:var(--ink);}
+
+.rows{display:grid;gap:9px;margin:0;}
+.row{display:grid;grid-template-columns:76px 1fr;gap:10px;align-items:start;font-size:.88rem;}
+.row dt{color:var(--ink-3);font-size:.82rem;}
+.row dd{margin:0;min-width:0;}
+.copyline{display:flex;gap:8px;align-items:flex-start;}
+.copyline code{font-family:var(--mono);font-size:.86rem;background:transparent;color:var(--ink);
+  word-break:break-word;flex:1;min-width:0;font-variant-numeric:tabular-nums;}
+button.copy{flex:none;font:inherit;font-size:.74rem;padding:3px 9px;border-radius:999px;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink-2);cursor:pointer;}
+button.copy:hover{border-color:var(--indigo);color:var(--indigo);}
+button.copy[data-done="1"]{border-color:var(--gold);color:var(--gold);}
+
+.hotel-card h3{font-size:1rem;}
+.hotel-card .when{display:inline-block;font-size:.76rem;letter-spacing:.06em;color:var(--gold);
+  margin-bottom:7px;}
+.hotel-card p.desc{font-size:.84rem;color:var(--ink-2);margin-top:10px;}
+
+.zonegrp{margin-top:12px;}
+.zonegrp h3{font-size:.92rem;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;}
+.zonegrp h3 em{font-style:normal;font-size:.72rem;color:var(--ink-3);letter-spacing:.08em;}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.chips a{font-size:.82rem;text-decoration:none;padding:4px 10px;border-radius:999px;
+  border:1px solid var(--line);color:var(--ink);background:var(--surface);}
+.chips a:hover{border-color:var(--indigo);color:var(--indigo);}
+
+table{width:100%;border-collapse:collapse;font-size:.85rem;}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--line);}
+th{color:var(--ink-2);font-weight:500;}
+td{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+.scroll{overflow-x:auto;}
+
+footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);
+  font-size:.76rem;color:var(--ink-3);}
+footer p + p{margin-top:5px;}
+/* 路線地圖（OSM 街道底圖＋路線疊層） */
+[hidden]{display:none!important}
+.rmap{display:block;width:100%;height:auto;border-radius:11px;margin-top:10px;
+  background:#EDEAE3}
+.rmap .route-h{fill:none;stroke:#fff;stroke-width:11;stroke-linejoin:round;
+  stroke-linecap:round;opacity:.92}
+.rmap .route{fill:none;stroke:#13507E;stroke-width:5;stroke-linejoin:round;stroke-linecap:round}
+.rmap .pin{fill:#13507E;stroke:#fff;stroke-width:3}
+.rmap .pinnum{fill:#fff;font:700 21px var(--sans);text-anchor:middle}
+.rmap .scalebg{fill:rgba(255,255,255,.84)}
+.rmap .scale line{stroke:#1C2733;stroke-width:2}
+.rmap .scale text{fill:#1C2733;font:600 15px var(--sans);text-anchor:middle}
+.rmap .osmcred rect{fill:rgba(255,255,255,.84)}
+.rmap .osmcred text{fill:#1C2733;font:500 13px var(--sans)}
+#maps figcaption{font-weight:600;font-size:.95rem}
+ol.maplegend{list-style:none;margin:12px 0 0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:5px 12px}
+ol.maplegend li{display:flex;align-items:baseline;gap:7px;font-size:.84rem;color:var(--ink-2)}
+ol.maplegend b{flex:none;width:19px;height:19px;border-radius:50%;background:#13507E;
+  color:#fff;font-size:.72rem;font-weight:600;display:inline-flex;
+  align-items:center;justify-content:center}
+p.offmap{font-size:.76rem;color:var(--gold);margin-top:10px}
+p.mapsrc{font-size:.7rem;color:var(--ink-3);margin-top:12px;line-height:1.5}
+
+#lb{position:fixed;inset:0;z-index:60;background:var(--scrim);display:flex;
+  align-items:center;justify-content:center;
+  padding:calc(12px + env(safe-area-inset-top,0px)) max(12px,env(safe-area-inset-right,0px))
+          calc(12px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px))}
+#lb .lbbox{background:var(--surface);border-radius:15px;width:100%;max-width:720px;
+  max-height:100%;overflow:auto;padding:16px;box-shadow:0 24px 60px -20px rgba(0,0,0,.6)}
+#lb .lbhead{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+#lb .lbclose{flex:none;font:inherit;font-size:.82rem;font-weight:600;padding:6px 13px;
+  border-radius:999px;border:1px solid var(--line);background:var(--surface);
+  color:var(--ink-2);cursor:pointer}
+#lb .lbclose:hover{border-color:var(--pin);color:var(--pin)}
+#lb figure{margin:0}
+#lb .lbgo{display:flex;align-items:center;justify-content:space-between;gap:10px;
+  margin-top:13px;padding:11px 15px;border-radius:10px;text-decoration:none;
+  background:var(--indigo-soft);color:var(--indigo);font-weight:600;font-size:.9rem}
+#lb .lbgo:hover{filter:brightness(.97)}
+.stripwrap{position:relative}
+.sarr{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;
+  border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);
+  font:600 18px/1 var(--sans);cursor:pointer;padding:0;opacity:.94;
+  display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow)}
+.sarr.prev{left:8px}
+.sarr.next{right:8px}
+.sarr:hover{border-color:var(--indigo);color:var(--indigo)}
+body.lb-open{overflow:hidden}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important;
+  scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="kicker">Chiang Mai · Lamphun · Lampang</div>
+  <h1>清邁五日隨身手冊</h1>
+  <div class="dates">10/22 — 10/26</div>
+  <div class="sub">A 團（10/22 出發）行程。第二梯住宿順序相反，以自己梯次的手冊為準。</div>
+</header>
+
+<nav>
+  <ul>
+    <li><a href="#go">出發</a></li>
+    <li><a href="#d1">D1 古城</a></li>
+    <li><a href="#d2">D2 山谷</a></li>
+    <li><a href="#d3">D3 大象</a></li>
+    <li><a href="#d4">D4 南奔</a></li>
+    <li><a href="#d5">D5 返台</a></li>
+    <li><a href="#hotel">住宿</a></li>
+    <li><a href="#zone">地區</a></li>
+    <li><a href="#info">實用</a></li>
+  </ul>
+</nav>
+
+<section id="go">
+  <div class="eyebrow"><h2>出發資訊</h2><span>DEPARTURE</span></div>
+  <div class="card">
+    <dl class="rows">
+      <div class="row"><dt>集合</dt><dd><strong>2026/10/22（四）05:10</strong></dd></div>
+      <div class="row"><dt>地點</dt><dd>桃園機場第二航廈　長榮航空 20 號櫃台</dd></div>
+      <div class="row"><dt>去程</dt><dd>BR257　桃園 07:40 → 清邁 10:25</dd></div>
+      <div class="row"><dt>回程</dt><dd>BR258　清邁 11:50 → 桃園 16:20</dd></div>
+    </dl>
+    <div class="note">託運行李每人 1 件、23 公斤；手提 1 件、7 公斤。<b>行動電源必須隨身，不可託運。</b>抵達前 72 小時內要線上申辦 TDAC 電子入境卡。</div>
+  </div>
+</section>
+
+<p class="detail" style="margin-top:18px">時間軸順序依手冊推排，用餐位置為推估；只有標出的時刻是手冊寫明的，實際以導遊為準。</p>
+<div id="days">
+  <noscript>
+    <section>
+      <div class="card note">這個瀏覽器停用了 JavaScript，每日行程時間軸無法顯示。下方的住宿地址與實用資訊仍然可用。</div>
+    </section>
+  </noscript>
+</div>
+
+<section id="hotel">
+  <div class="eyebrow"><h2>住宿</h2><span>給司機看的地址在這裡</span></div>
+
+  <div class="card hotel-card">
+    <span class="when">10/22（四） — 10/23（五）</span>
+    <h3>Veranda High Resort Chiang Mai — MGallery Collection</h3>
+    <div id="shots-veranda"></div>
+    <dl class="rows" style="margin-top:11px">
+      <div class="row"><dt>地址</dt><dd><div class="copyline"><code>192, Tambon Ban Pong, Amphoe Mueang Chiang Mai, Chang Wat Chiang Mai 50230, Thailand</code><button class="copy" type="button" data-copy="192, Tambon Ban Pong, Amphoe Mueang Chiang Mai, Chang Wat Chiang Mai 50230, Thailand">複製</button></div></dd></div>
+      <div class="row"><dt>電話</dt><dd><div class="copyline"><code>+66-53-365-007</code><button class="copy" type="button" data-copy="+6653365007">複製</button></div></dd></div>
+    </dl>
+    <p class="desc">隱身於清邁山林谷地，蘭納傳統風情融合現代設計。有俯瞰梯田與山巒的無邊際高空泳池、SPA、景觀餐廳與寬敞套房。</p>
+    <a class="routebtn" href="https://www.google.com/maps/search/?api=1&amp;query=Veranda%20High%20Resort%20Chiang%20Mai" target="_blank" rel="noopener"><span>在地圖上開啟</span><span class="arrow">→</span></a>
+  </div>
+
+  <div class="card hotel-card">
+    <span class="when">10/24（六） — 10/25（日）</span>
+    <h3>Kantary Hills, Chiang Mai</h3>
+    <div id="shots-kantary"></div>
+    <dl class="rows" style="margin-top:11px">
+      <div class="row"><dt>地址</dt><dd><div class="copyline"><code>44/1-4 Nimmanahaeminda Road, Nimmanhaemin, Tambon Su Thep, Amphoe Mueang Chiang Mai, Chang Wat Chiang Mai 50200, Thailand</code><button class="copy" type="button" data-copy="44/1-4 Nimmanahaeminda Road, Nimmanhaemin, Tambon Su Thep, Amphoe Mueang Chiang Mai, Chang Wat Chiang Mai 50200, Thailand">複製</button></div></dd></div>
+      <div class="row"><dt>電話</dt><dd><div class="copyline"><code>+66-53-222-111</code><button class="copy" type="button" data-copy="+6653222111">複製</button></div></dd></div>
+    </dl>
+    <p class="desc">就在尼曼路商圈，步行可達咖啡館與文創店家。公寓式套房附客廳與簡易廚房，有戶外泳池與健身房。</p>
+    <a class="routebtn" href="https://www.google.com/maps/search/?api=1&amp;query=Kantary%20Hills%20Chiang%20Mai" target="_blank" rel="noopener"><span>在地圖上開啟</span><span class="arrow">→</span></a>
+  </div>
+
+  <div class="note" style="margin-top:12px">三個梯次住的是同樣兩間飯店，只是順序不同：<b>第二梯先住 Kantary Hills、後住 Veranda</b>，第一、三梯相反。行程也只有第 2、3 天不一樣。</div>
+</section>
+
+<section id="zone">
+  <div class="eyebrow"><h2>地區速查</h2><span>景點在哪一區</span></div>
+  <div class="card">
+    <div class="zonegrp">
+      <h3>清邁古城 <em>CHIANG MAI OLD CITY</em></h3>
+      <div class="chips">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Three%20Kings%20Monument%20Chiang%20Mai" target="_blank" rel="noopener">三王紀念像</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Wat%20Chedi%20Luang%20Chiang%20Mai" target="_blank" rel="noopener">大塔寺</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Tha%20Phae%20Gate%20Chiang%20Mai" target="_blank" rel="noopener">塔佩門</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Wat%20Phra%20Singh%20Chiang%20Mai" target="_blank" rel="noopener">帕刑寺</a>
+      </div>
+    </div>
+    <div class="zonegrp">
+      <h3>尼曼・市區 <em>NIMMAN &amp; CITY</em></h3>
+      <div class="chips">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Nimman%20Haemin%20Road%20Chiang%20Mai" target="_blank" rel="noopener">尼曼文創商圈</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=One%20Nimman%20Chiang%20Mai" target="_blank" rel="noopener">尼曼一號</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Maya%20Lifestyle%20Shopping%20Center%20Chiang%20Mai" target="_blank" rel="noopener">馬雅百貨</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Chang%20Klan%20Road%20Chiang%20Mai%20Night%20Bazaar" target="_blank" rel="noopener">清邁夜市</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Kantary%20Hills%20Chiang%20Mai" target="_blank" rel="noopener">Kantary Hills</a>
+      </div>
+    </div>
+    <div class="zonegrp">
+      <h3>素貼山・東側山谷 <em>DOI SUTHEP &amp; MAE ON</em></h3>
+      <div class="chips">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Wat%20Phra%20That%20Doi%20Suthep" target="_blank" rel="noopener">雙龍寺 1053m</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Mae%20Kampong%20Chiang%20Mai" target="_blank" rel="noopener">百年幸福村</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=%E6%81%A9%E6%B3%B0%E6%9C%89%E6%A9%9F%E8%BE%B2%E5%A0%B4%20%E6%B8%85%E9%82%81" target="_blank" rel="noopener">恩泰有機農場</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=%E8%98%AD%E8%B0%B7%E8%8E%8A%E5%9C%92%20%E6%B8%85%E9%82%81" target="_blank" rel="noopener">蘭谷莊園</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Veranda%20High%20Resort%20Chiang%20Mai" target="_blank" rel="noopener">Veranda</a>
+      </div>
+    </div>
+    <div class="zonegrp">
+      <h3>清邁北郊 <em>MAE TAENG</em></h3>
+      <div class="chips">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=%E5%8F%8B%E5%96%84%E5%A4%A7%E8%B1%A1%E7%87%9F%20%E6%B8%85%E9%82%81" target="_blank" rel="noopener">友善大象營</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Wat%20Ban%20Den%20Chiang%20Mai" target="_blank" rel="noopener">藍廟</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Dantewada%20Chiang%20Mai" target="_blank" rel="noopener">天使瀑布</a>
+      </div>
+    </div>
+    <div class="zonegrp">
+      <h3>南奔府・南邦 <em>LAMPHUN &amp; LAMPANG</em></h3>
+      <div class="chips">
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Wat%20Phra%20That%20Hariphunchai%20Lamphun" target="_blank" rel="noopener">哈利奔猜寺</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=%E5%8D%97%E9%82%A6%20%E9%99%B6%E7%93%B7%E5%B7%A5%E5%BB%A0" target="_blank" rel="noopener">陶瓷工廠</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Lampang%20Old%20Town%20horse%20carriage" target="_blank" rel="noopener">南邦古城</a>
+      </div>
+      <p class="detail" style="margin-top:8px">清邁 → 南奔 搭火車約 20–30 分鐘；清邁 → 南邦 100 公里、車程約 1.5 小時。</p>
+    </div>
+  </div>
+</section>
+
+<section id="info">
+  <div class="eyebrow"><h2>實用數字</h2><span>PRACTICAL</span></div>
+  <div class="card">
+    <dl class="rows">
+      <div class="row"><dt>時差</dt><dd>泰國比台灣慢 1 小時。行程時間一律講當地時間。</dd></div>
+      <div class="row"><dt>電壓</dt><dd>220V／50Hz。插座相容台灣兩腳扁插，<strong>不用轉接頭</strong>；但吹風機、電棒捲等要確認標示有 100V–240V。</dd></div>
+      <div class="row"><dt>匯率</dt><dd>1 泰銖 ≒ 1.07 新台幣（以銀行當日公告為主）。紙鈔 20／50／100／500／1000。</dd></div>
+      <div class="row"><dt>入境現金</dt><dd>海關隨機抽查，<strong>每人 2 萬泰銖、每家庭 4 萬泰銖</strong>等值即可（美金、台幣都算）。</dd></div>
+      <div class="row"><dt>入境卡</dt><dd>免簽可停留 30 天，但抵達前 <strong>72 小時內</strong>要線上申辦 TDAC。</dd></div>
+      <div class="row"><dt>打電話</dt><dd>泰國打台灣手機：001 ＋ 886 ＋ 手機號碼去 0。清邁、南奔區碼 53。</dd></div>
+    </dl>
+    <div style="margin-top:14px" class="scroll">
+      <table>
+        <caption style="text-align:left;font-size:.78rem;color:var(--ink-3);padding-bottom:6px">小費行情（本團已含領隊、導遊、司機小費）</caption>
+        <tbody>
+          <tr><th scope="row">各式按摩</th><td>100–200 泰銖</td></tr>
+          <tr><th scope="row">騎大象</th><td>約 50 泰銖</td></tr>
+          <tr><th scope="row">坐馬車</th><td>約 50 泰銖</td></tr>
+          <tr><th scope="row">坐小船</th><td>20–50 泰銖</td></tr>
+          <tr><th scope="row">與表演者拍照</th><td>100–150 泰銖</td></tr>
+          <tr><th scope="row">行李小費</th><td>每間每次 20 泰銖</td></tr>
+          <tr><th scope="row">床頭小費</th><td>每間每天 20 泰銖</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note" style="margin-top:14px">給小費<b>請用紙鈔，不要給硬幣</b>。另外：榴槤不可帶上車或帶進旅館；水不能生飲，椰子汁雖便宜也不宜多喝。</div>
+  </div>
+
+</section>
+
+<footer>
+  <p>個人整理，非官方頁面。行程、地址與小費行情取自雄獅旅遊《1022 龍騰文化 清邁 5 日旅遊手冊（A 團）》；照片為手冊內頁照片，加上自行補充的參考照片，僅供辨識地點與氛圍參考。</p>
+  <p>時間軸的先後順序依手冊行程推排，<b>實際時間與順序以現場導遊為準</b>；只有手冊明寫的時刻（集合 05:10、BR257 07:40／10:25、BR258 11:50／16:20）是確定的。</p>
+  <p>手冊未提供英文名的地點（恩泰有機農場、蘭谷莊園、友善大象營、南邦陶瓷工廠）用中文關鍵字搜尋，實際位置以現場導遊為準，整日路線也沒有把它們放進去。餐廳只列名稱，未附地圖。</p>
+  <p>路線圖的底圖與地點坐標均來自 OpenStreetMap（街道圖磚與 Nominatim 地理編碼），© OpenStreetMap contributors，ODbL。Google 地圖的圖磚無法嵌入或快取在這種頁面上，所以底圖用 OpenStreetMap，另外留了一顆按鈕直接跳到 Google 地圖。</p>
+</footer>
+
+<div id="maps" hidden>
+<figure data-day="d1"><figcaption>第 1 天：機場 → 古城 → 雙龍寺 → Veranda</figcaption><svg class="rmap" viewBox="0 0 700 483" role="img" aria-label="d1">
+<image href="img/map-d1.jpg" x="0" y="0" width="700" height="483"/>
+<polyline class="route-h" points="462.5,306.9 568.7,190.1 566.0,205.5 596.7,202.4 260.7,116.3 104.0,368.4"/>
+<polyline class="route" points="462.5,306.9 568.7,190.1 566.0,205.5 596.7,202.4 260.7,116.3 104.0,368.4"/>
+<circle class="pin" cx="462.5" cy="306.9" r="17.0"/>
+<text class="pinnum" x="462.5" y="314.4">1</text>
+<circle class="pin" cx="568.7" cy="190.1" r="35.0"/>
+<text class="pinnum" x="568.7" y="197.6">2·3·4</text>
+<circle class="pin" cx="260.7" cy="116.3" r="17.0"/>
+<text class="pinnum" x="260.7" y="123.8">5</text>
+<circle class="pin" cx="104.0" cy="368.4" r="17.0"/>
+<text class="pinnum" x="104.0" y="375.9">6</text>
+<g class="scale"><rect class="scalebg" x="12" y="435" width="113.7" height="30" rx="6"/><line x1="24" y1="457" x2="113.7" y2="457"/><line x1="24" y1="451" x2="24" y2="463"/><line x1="113.7" y1="451" x2="113.7" y2="463"/><text x="68.8" y="447">2 km</text></g>
+<g class="osmcred"><rect x="456.0" y="451" width="232" height="24" rx="6"/><text x="468.0" y="468">© OpenStreetMap contributors</text></g>
+</svg><ol class="maplegend"><li><b>1</b><span>清邁機場</span></li><li><b>2</b><span>三王紀念像</span></li><li><b>3</b><span>大塔寺</span></li><li><b>4</b><span>塔佩門古城牆</span></li><li><b>5</b><span>雙龍寺</span></li><li><b>6</b><span>Veranda High Resort</span></li></ol></figure>
+<figure data-day="d2"><figcaption>第 2 天：Veranda ↔ 百年幸福村</figcaption><svg class="rmap" viewBox="0 0 700 483" role="img" aria-label="d2">
+<image href="img/map-d2.jpg" x="0" y="0" width="700" height="483"/>
+<polyline class="route-h" points="104.1,304.8 596.7,179.5 104.1,304.8"/>
+<polyline class="route" points="104.1,304.8 596.7,179.5 104.1,304.8"/>
+<circle class="pin" cx="104.1" cy="304.8" r="17.0"/>
+<text class="pinnum" x="104.1" y="312.3">1</text>
+<circle class="pin" cx="596.7" cy="179.5" r="17.0"/>
+<text class="pinnum" x="596.7" y="187.0">2</text>
+<g class="scale"><rect class="scalebg" x="12" y="435" width="125.6" height="30" rx="6"/><line x1="24" y1="457" x2="125.6" y2="457"/><line x1="24" y1="451" x2="24" y2="463"/><line x1="125.6" y1="451" x2="125.6" y2="463"/><text x="74.8" y="447">10 km</text></g>
+<g class="osmcred"><rect x="456.0" y="451" width="232" height="24" rx="6"/><text x="468.0" y="468">© OpenStreetMap contributors</text></g>
+</svg><ol class="maplegend"><li><b>1</b><span>Veranda High Resort</span></li><li><b>2</b><span>百年幸福村 Mae Kampong</span></li></ol><p class="offmap">未上圖（手冊沒有英文名、查不到坐標）：恩泰有機農場、蘭谷莊園</p></figure>
+<figure data-day="d3"><figcaption>第 3 天：北郊 → 尼曼 → Kantary</figcaption><svg class="rmap" viewBox="0 0 700 484" role="img" aria-label="d3">
+<image href="img/map-d3.jpg" x="0" y="0" width="700" height="484"/>
+<polyline class="route-h" points="310.4,412.8 390.3,72.1 356.1,84.4 376.4,370.1 377.0,372.2 373.5,375.6"/>
+<polyline class="route" points="310.4,412.8 390.3,72.1 356.1,84.4 376.4,370.1 377.0,372.2 373.5,375.6"/>
+<circle class="pin" cx="310.4" cy="412.8" r="17.0"/>
+<text class="pinnum" x="310.4" y="420.3">1</text>
+<circle class="pin" cx="390.3" cy="72.1" r="17.0"/>
+<text class="pinnum" x="390.3" y="79.6">2</text>
+<circle class="pin" cx="356.1" cy="84.4" r="17.0"/>
+<text class="pinnum" x="356.1" y="91.9">3</text>
+<circle class="pin" cx="376.4" cy="370.1" r="35.0"/>
+<text class="pinnum" x="376.4" y="377.6">4·5·6</text>
+<g class="scale"><rect class="scalebg" x="12" y="436" width="184.0" height="30" rx="6"/><line x1="24" y1="458" x2="184.0" y2="458"/><line x1="24" y1="452" x2="24" y2="464"/><line x1="184.0" y1="452" x2="184.0" y2="464"/><text x="104.0" y="448">20 km</text></g>
+<g class="osmcred"><rect x="456.0" y="452" width="232" height="24" rx="6"/><text x="468.0" y="469">© OpenStreetMap contributors</text></g>
+</svg><ol class="maplegend"><li><b>1</b><span>Veranda High Resort</span></li><li><b>2</b><span>藍廟 Wat Ban Den</span></li><li><b>3</b><span>天使瀑布 Dantewada</span></li><li><b>4</b><span>馬雅百貨</span></li><li><b>5</b><span>尼曼一號 One Nimman</span></li><li><b>6</b><span>Kantary Hills</span></li></ol><p class="offmap">未上圖（手冊沒有英文名、查不到坐標）：友善大象營</p></figure>
+<figure data-day="d4"><figcaption>第 4 天：南奔 → 南邦 → 清邁夜市</figcaption><svg class="rmap" viewBox="0 0 700 483" role="img" aria-label="d4">
+<image href="img/map-d4.jpg" x="0" y="0" width="700" height="483"/>
+<polyline class="route-h" points="122.6,71.7 157.8,257.1 578.3,412.2 151.9,81.8 122.6,71.7"/>
+<polyline class="route" points="122.6,71.7 157.8,257.1 578.3,412.2 151.9,81.8 122.6,71.7"/>
+<circle class="pin" cx="122.6" cy="71.7" r="25.8"/>
+<text class="pinnum" x="122.6" y="79.2">1·4</text>
+<circle class="pin" cx="157.8" cy="257.1" r="17.0"/>
+<text class="pinnum" x="157.8" y="264.6">2</text>
+<circle class="pin" cx="578.3" cy="412.2" r="17.0"/>
+<text class="pinnum" x="578.3" y="419.7">3</text>
+<g class="scale"><rect class="scalebg" x="12" y="435" width="176.0" height="30" rx="6"/><line x1="24" y1="457" x2="176.0" y2="457"/><line x1="24" y1="451" x2="24" y2="463"/><line x1="176.0" y1="451" x2="176.0" y2="463"/><text x="100.0" y="447">20 km</text></g>
+<g class="osmcred"><rect x="456.0" y="451" width="232" height="24" rx="6"/><text x="468.0" y="468">© OpenStreetMap contributors</text></g>
+</svg><ol class="maplegend"><li><b>1</b><span>Kantary Hills</span></li><li><b>2</b><span>哈利奔猜寺</span></li><li><b>3</b><span>南邦（概略位置）</span></li><li><b>4</b><span>清邁夜市</span></li></ol><p class="offmap">未上圖（手冊沒有英文名、查不到坐標）：南邦陶瓷工廠</p></figure>
+<figure data-day="d5"><figcaption>第 5 天：Kantary → 清邁機場</figcaption><svg class="rmap" viewBox="0 0 700 484" role="img" aria-label="d5">
+<image href="img/map-d5.jpg" x="0" y="0" width="700" height="484"/>
+<polyline class="route-h" points="348.0,163.4 352.8,322.3"/>
+<polyline class="route" points="348.0,163.4 352.8,322.3"/>
+<circle class="pin" cx="348.0" cy="163.4" r="17.0"/>
+<text class="pinnum" x="348.0" y="170.9">1</text>
+<circle class="pin" cx="352.8" cy="322.3" r="17.0"/>
+<text class="pinnum" x="352.8" y="329.8">2</text>
+<g class="scale"><rect class="scalebg" x="12" y="436" width="120.7" height="30" rx="6"/><line x1="24" y1="458" x2="120.7" y2="458"/><line x1="24" y1="452" x2="24" y2="464"/><line x1="120.7" y1="452" x2="120.7" y2="464"/><text x="72.4" y="448">2 km</text></g>
+<g class="osmcred"><rect x="456.0" y="452" width="232" height="24" rx="6"/><text x="468.0" y="469">© OpenStreetMap contributors</text></g>
+</svg><ol class="maplegend"><li><b>1</b><span>Kantary Hills</span></li><li><b>2</b><span>清邁機場</span></li></ol></figure>
+</div>
+<div id="lb" hidden role="dialog" aria-modal="true" aria-label="每日路線地圖">
+  <div class="lbbox">
+    <div class="lbhead">
+      <strong id="lbtitle">路線地圖</strong>
+      <button type="button" class="lbclose">關閉</button>
+    </div>
+    <div id="lbbody"></div>
+    <a class="lbgo" id="lbout" href="#" target="_blank" rel="noopener"><span>在 Google 地圖開啟這條路線</span><span class="arrow">→</span></a>
+    <p class="mapsrc">底圖為 OpenStreetMap 街道圖，© OpenStreetMap contributors（ODbL）。圖上的藍線是<b>按行程順序的直線</b>，不是實際行車路徑；要看真實路線和車程請用上面的按鈕。</p>
+  </div>
+</div>
+
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var MAPS = "https://www.google.com/maps/search/?api=1&query=";
+  var NAVI = "https://www.google.com/maps/dir/?api=1&destination=";
+
+  var V = {
+    name: "Veranda High Resort Chiang Mai",
+    zh: "Veranda High Resort（MGallery）",
+    pics: ["img/veranda-1.jpg", "img/veranda-2.jpg", "img/veranda-3.jpg", "img/veranda-4.jpg",
+           "img/veranda-5.jpg", "img/veranda-6.jpg", "img/veranda-7.jpg"],
+    q: "Veranda High Resort Chiang Mai",
+    addr: "192, Tambon Ban Pong, Amphoe Mueang Chiang Mai, Chang Wat Chiang Mai 50230, Thailand",
+    tel: "+66-53-365-007"
+  };
+  var K = {
+    name: "Kantary Hills Chiang Mai",
+    zh: "Kantary Hills, Chiang Mai",
+    pics: ["img/kantary.jpg", "img/kantary-2.jpg", "img/kantary-3.jpg"],
+    q: "Kantary Hills Chiang Mai",
+    addr: "44/1-4 Nimmanahaeminda Road, Nimmanhaemin, Tambon Su Thep, Amphoe Mueang Chiang Mai, Chang Wat Chiang Mai 50200, Thailand",
+    tel: "+66-53-222-111"
+  };
+
+  function hotel(h, label, shot) {
+    var o = { t: "hotel", name: h.zh + "（" + label + "）", q: h.q, zone: "住宿", addr: h.addr, tel: h.tel };
+    if (shot) o.shots = h.pics;
+    return o;
+  }
+
+  var DAYS = [
+    {
+      id: "d1", n: 1, title: "蘭娜古城與雙龍寺", head: "桃園 → 清邁 → 古城 → 素貼山",
+      date: "10 月 22 日（四）　宿 Veranda High Resort", tag: "10/22 THU",
+      route: "https://www.google.com/maps/dir/?api=1&origin=Chiang%20Mai%20International%20Airport&destination=Veranda%20High%20Resort%20Chiang%20Mai&waypoints=Three%20Kings%20Monument%20Chiang%20Mai%7CWat%20Chedi%20Luang%20Chiang%20Mai%7CTha%20Phae%20Gate%20Chiang%20Mai%7CWat%20Phra%20That%20Doi%20Suthep&travelmode=driving",
+      note: "<b>手冊提醒：</b>雙龍寺每逢週末及泰國假日上山設有交通管制，遊覽車不能上去，團體若卡到將改坐雙排車上山或行程前後調整。寺廟服裝規定：上衣要有袖、下身要過膝。",
+      items: [
+        { t: "travel", name: "桃園機場　集合", clock: "05:10", detail: "第二航廈　長榮航空 20 號櫃台" },
+        { t: "meal", name: "早餐・機上簡餐" },
+        { t: "spot", name: "清邁機場", clock: "10:25", q: "Chiang Mai International Airport",
+          zone: "清邁市區", detail: "BR257 桃園 07:40 起飛，抵達清邁 10:25（當地時間，比台灣慢 1 小時）",
+          shots: ["img/airport-arrive.jpg"] },
+        { t: "meal", name: "午餐・泰式咖哩麵 ＋ 泰式奶茶一杯", shots: ["img/khao-soi.jpg"] },
+        { t: "spot", name: "三王紀念像", q: "Three Kings Monument Chiang Mai", zone: "清邁古城",
+          detail: "嘟嘟車蘭娜古城之旅起點，從古城三王銅像出發往西門",
+          shots: ["img/three-kings.jpg"] },
+        { t: "spot", name: "大塔寺", q: "Wat Chedi Luang Chiang Mai", zone: "清邁古城",
+          detail: "途中車行經過帕刑寺、西門（花園門）、城堡區停車拍照、南門傳統市場",
+          dress: "<b>服裝提醒</b>：進廟裡要<b>上衣有袖、下身過膝</b>，背心、短褲、短裙都不行。古城區的寺廟都一樣。",
+          shots: ["img/chedi-luang.jpg"] },
+        { t: "spot", name: "塔佩門古城牆", q: "Tha Phae Gate Chiang Mai", zone: "清邁古城",
+          detail: "水果街、古城牆打卡拍照，再順濱河到濱河大橋結束古城之旅",
+          shots: ["img/thaphae-gate.jpg"] },
+        { t: "spot", name: "雙龍寺", q: "Wat Phra That Doi Suthep", zone: "素貼山",
+          detail: "含纜車＋立式斜坡電梯。海拔 1053 公尺，白象選址、皇室建造，山路兩旁有兩隻金龍守護。",
+          dress: "<b>服裝提醒</b>：今天第一站就是寺廟，<b>機場集合時就要穿好</b> —— 上衣有袖、褲裙過膝。真的沒帶，雙龍寺外面有沙龍布可以包住下半身。",
+          shots: ["img/doi-suthep.jpg"] },
+        { t: "meal", name: "晚餐・王府帝王宴 ＋ 每人一顆椰子", shots: ["img/khantoke.jpg"] },
+        hotel(V, "入住", 1)
+      ]
+    },
+    {
+      id: "d2", n: 2, title: "百年幸福村與蘭谷莊園", head: "全天麵包車・清邁近郊山谷",
+      date: "10 月 23 日（五）　宿 Veranda High Resort", tag: "10/23 FRI",
+      route: "https://www.google.com/maps/dir/?api=1&origin=Veranda%20High%20Resort%20Chiang%20Mai&destination=Veranda%20High%20Resort%20Chiang%20Mai&waypoints=Mae%20Kampong%20Chiang%20Mai&travelmode=driving",
+      note: "今天兩個 DIY 體驗（草藥包、水燈）加上泡腳，<b>穿好穿脫的鞋、帶一件薄外套</b>；山谷裡早晚偏涼。",
+      items: [
+        { t: "meal", name: "早餐・飯店內用" },
+        hotel(V, "出發"),
+        { t: "spot", name: "百年幸福村 Mae Kampong", q: "Mae Kampong Chiang Mai", zone: "清邁東側山谷",
+          detail: "群山環繞、小溪貫穿的古老村莊，有「Valley Village」之名；村裡有全清邁最迷你的蘭納風格古寺。",
+          dress: "<b>服裝提醒</b>：村裡那座全清邁最迷你的古寺，想進去的話一樣要<b>上衣有袖、下身過膝</b>。",
+          shots: ["img/mae-kampong.jpg"] },
+        { t: "spot", name: "恩泰有機農場", q: "恩泰有機農場 清邁", zone: "清邁東側山谷", approx: true,
+          detail: "迎賓飲料＋泰式甜點＋DIY 泰式按摩草藥包＋泰式草藥泡腳去角質＋羊咩咩農場餵小動物",
+          shots: ["img/ental-farm.jpg"] },
+        { t: "meal", name: "午餐・恩泰農場內用",
+          shots: ["img/ental-lunch-1.jpg", "img/ental-lunch-2.jpg"] },
+        { t: "spot", name: "蘭谷莊園", q: "蘭谷莊園 清邁", zone: "清邁東側山谷", approx: true,
+          detail: "騎單車＋甜甜圈漂漂河＋水上鞦韆＋天空之門＋網紅鳥巢＋鳥巢鞦韆＋體驗泰服＋涼拌木瓜沙拉 DIY＋水燈 DIY＋放水燈祈福",
+          shots: ["img/lanna-valley.jpg", "img/lanna-valley-2.jpg"] },
+        { t: "meal", name: "晚餐・熱帶雨林複合式餐廳 — 仙氣 Chom Café", shots: ["img/chom-cafe.jpg"] },
+        hotel(V, "回宿")
+      ]
+    },
+    {
+      id: "d3", n: 3, title: "大象、藍廟與尼曼", head: "清邁北郊 → 市區尼曼商圈",
+      date: "10 月 24 日（六）　換住 Kantary Hills", tag: "10/24 SAT",
+      route: "https://www.google.com/maps/dir/?api=1&origin=Veranda%20High%20Resort%20Chiang%20Mai&destination=Kantary%20Hills%20Chiang%20Mai&waypoints=Wat%20Ban%20Den%20Chiang%20Mai%7CDantewada%20Chiang%20Mai%7CMaya%20Lifestyle%20Shopping%20Center%20Chiang%20Mai%7COne%20Nimman%20Chiang%20Mai&travelmode=driving",
+      note: "<b>今天是三梯大會師。</b>晚餐大約吃到九點，第三梯車程較遠、回飯店會比較晚，旅行社會協調先備好房卡直接發。今天也要換飯店。",
+      items: [
+        { t: "meal", name: "早餐・飯店內用" },
+        hotel(V, "退房、行李上車"),
+        { t: "spot", name: "友善大象營", q: "友善大象營 清邁", zone: "清邁北郊", approx: true,
+          detail: "大象好食光＋與象戲水趣＋製作大象食物＋餵食大象",
+          shots: ["img/elephant-1.jpg", "img/elephant-2.jpg"] },
+        { t: "meal", name: "午餐・園區內簡餐" },
+        { t: "spot", name: "藍廟 Wat Ban Den", q: "Wat Ban Den Chiang Mai", zone: "清邁北郊",
+          detail: "建於佛曆 2437 年，比清邁的黑廟、白廟更久遠；黃昏時另有一股神祕氣息。",
+          dress: "<b>服裝提醒</b>：藍廟是正式寺廟，一樣要<b>上衣有袖、下身過膝</b>。前一站在大象營可能弄濕或弄髒，建議備一件可以換的長褲。",
+          shots: ["img/wat-ban-den.jpg", "img/wat-ban-den-2.jpg"] },
+        { t: "spot", name: "天使瀑布 Dantewada", q: "Dantewada Chiang Mai", zone: "清邁北郊",
+          detail: "郊區森林般的瀑布公園，穿過重重樹木後是一座四層樓高的瀑布。",
+          shots: ["img/dantewada-1.jpg", "img/dantewada-2.jpg"] },
+        { t: "spot", name: "馬雅百貨", q: "Maya Lifestyle Shopping Center Chiang Mai", zone: "尼曼・市區",
+          detail: "流行時尚區巡禮。要退稅的話，同一家店單筆滿 2,000 泰銖、憑護照拿退稅單，回機場才退。",
+          shots: ["img/maya.jpg", "img/maya-2.jpg", "img/maya-3.jpg"] },
+        { t: "spot", name: "尼曼一號 One Nimman", q: "One Nimman Chiang Mai", zone: "尼曼・市區",
+          detail: "2018 年開幕的美食市集，夜裡廣場點上裝飾燈，常有不定時活動。尼曼文創商圈 Nimman Haemin 步行可達。",
+          shots: ["img/one-nimman.jpg", "img/one-nimman-2.jpg",
+                  "img/one-nimman-3.jpg", "img/one-nimman-4.jpg"] },
+        { t: "travel", name: "泰式按摩 2 小時",
+          detail: "含在行程內，不含小費（按摩師小費約 100–200 泰銖）。不參加要事先登記，會退費。",
+          alt: "<summary>不按摩的話，這兩小時可以做什麼</summary>"
+             + "<p>行前說明會講過：不參加的人會先回飯店，按摩的由導遊帶走。<b>要事先登記，而且會退費。</b></p>"
+             + "<p><b>飯店就在尼曼商圈</b> —— Kantary Hills 的地址就在 Nimmanahaeminda Road 上，所以「回飯店」等於直接待在最好逛的那一區，不用再移動。</p>"
+             + "<h4>尼曼一號 One Nimman</h4>"
+             + "<p>2018 年開幕，磚紅色歐式拱廊加一座紅磚鐘樓，是這一區最好認的地標，也是主要拍照點。</p>"
+             + "<ul>"
+             + "<li><b>一樓</b>：玻璃天棚的石板拱廊，中央走道是手作與文創攤位 —— 飾品、香氛、明信片、小物</li>"
+             + "<li><b>二樓</b>：包包、服飾、鞋子、飾品、香氛，款式比較少見，但價位接近百貨</li>"
+             + "<li><b>中央廣場</b>：常有街頭音樂與市集</li>"
+             + "<li><b>One Market 美食區</b>：泰式料理、飲品、甜點攤位，有現場音樂與座位</li>"
+             + "</ul>"
+             + "<p>裡面的店：<b>GRAPH Coffee</b>（手沖與特調，有泰北風味的 Signature 系列）、<b>Soap for Soul</b>（泰國有機手工皂，可現場試用，很適合當伴手禮）、<b>KIEW KAI KA</b>（泰式創意菜，門口貼著歷年米其林推薦）、<b>Let's Relax Spa</b>。另外，<b>當天晚餐的謝桐興酒樓（Jia Tong Heng）據介紹就在 One Nimman 裡面</b>，所以逛完直接吃飯，不用再移動。</p>"
+             + "<h4>馬雅百貨 Maya</h4>"
+             + "<p>就在 One Nimman 對面，步行約 5 分鐘；營業時間 10:00–22:00。</p>"
+             + "<ul>"
+             + "<li><b>B1</b>：超市、藥妝櫃、手標泰式奶茶、泰北零食與伴手禮（小吃攤只收現金）</li>"
+             + "<li><b>1F</b>：國際品牌，H&amp;M、美妝保養專櫃、泰國設計師品牌、行李箱；廣場常有清倉特賣</li>"
+             + "<li><b>2F</b>：時尚、香水與彩妝，EVEANDBOY 泰國美妝店</li>"
+             + "<li><b>3F</b>：3C 與電信、銀行</li>"
+             + "<li><b>4F</b>：美食街（約八成泰式），Swensen's、MK 火鍋</li>"
+             + "<li><b>5F</b> SFX 影城、<b>6F</b> 展演空間與觀景台</li>"
+             + "</ul>"
+             + "<p><b>美食街要先買儲值卡</b>，儲 100–200 泰銖，沒用完可以在櫃台退；尖峰時段先佔位再點餐。一份奶茶＋炒麵＋綠咖哩飯大約 150 泰銖。</p>"
+             + "<h4>順手可以買的</h4>"
+             + "<p>痠痛藥膏與上標油、泰國在地彩妝（Maya 的 Boots、屈臣氏、EVEANDBOY）、手標奶茶 Cha Tra Mue 茶包（金濃／紅淡／綠奶綠）、蝶豆花茶、泰北竹編包與木雕、民族風織品與廚房用品、泰北零食餅乾與果乾（Maya B1）、Soap for Soul 手工皂（One Nimman）。</p>"
+             + "<p class=\"warn\">三個提醒：<b>含肉類成分的食品不能帶回台灣</b>；<b>3C 在泰國因關稅偏貴</b>，買之前先比價；想退稅的話，同一家店<b>單筆滿 2,000 泰銖</b>、憑護照拿退稅單，回機場才退。</p>"
+             + "<p class=\"src\">One Nimman 與 Maya 的介紹整理自兩篇旅遊部落格，不是手冊內容，樓層與店家可能已經變動；退費規則與飯店地址則來自行前說明會與手冊。</p>" },
+        { t: "meal", name: "晚餐・米其林畢比登推薦 — 謝桐興酒樓",
+          shots: ["img/xie-1.jpg", "img/xie-2.jpg", "img/xie-3.jpg", "img/xie-4.jpg"] },
+        hotel(K, "入住", 1)
+      ]
+    },
+    {
+      id: "d4", n: 4, title: "南奔火車與南邦馬車", head: "清邁 → 南奔府 → 南邦 → 清邁夜市",
+      date: "10 月 25 日（日）　宿 Kantary Hills", tag: "10/25 SUN",
+      route: "https://www.google.com/maps/dir/?api=1&origin=Kantary%20Hills%20Chiang%20Mai&destination=Kantary%20Hills%20Chiang%20Mai&waypoints=Wat%20Phra%20That%20Hariphunchai%20Lamphun%7CLampang%20Thailand%7CChang%20Klan%20Road%20Chiang%20Mai%20Night%20Bazaar&travelmode=driving",
+      note: "手冊在這一天標了 <b>※僅供參考</b>。另外兩則：若遇火車停駛將改由巴士接駁，此為套裝行程不另退費；彩繪馬克杯烘製約 30 分鐘、現場發放，<b>無法當水杯使用</b>，供觀賞用。",
+      items: [
+        { t: "meal", name: "早餐・飯店內用" },
+        hotel(K, "出發"),
+        { t: "travel", name: "南奔火車之旅",
+          detail: "從清邁搭泰國特色火車前往南奔府，車行約 20–30 分鐘，抵達後改乘巴士完成今日行程。",
+          shots: ["img/lamphun-train.jpg"] },
+        { t: "spot", name: "哈利奔猜寺", q: "Wat Phra That Hariphunchai Lamphun", zone: "南奔府",
+          detail: "建於 11 世紀，由蘭納王國女王 Chama Thewi 創建；金色佛塔高 46 公尺，融合蘭納與緬甸建築風格。南奔首府建於西元 663 年，是泰北最古老的城市。",
+          dress: "<b>服裝提醒</b>：泰北最具宗教意義的寺廟之一，<b>上衣有袖、下身過膝</b>的規定同樣適用。",
+          shots: ["img/hariphunchai.jpg"] },
+        { t: "meal", name: "午餐・南奔花園餐廳",
+          shots: ["img/lamphun-garden-1.jpg", "img/lamphun-garden-2.jpg"] },
+        { t: "spot", name: "南邦陶瓷工廠", q: "南邦 陶瓷工廠", zone: "南邦", approx: true,
+          detail: "DIY 彩繪馬克杯", shots: ["img/ceramic-diy.jpg"] },
+        { t: "spot", name: "南邦古城・馬車", q: "Lampang Old Town horse carriage", zone: "南邦",
+          detail: "距清邁 100 公里、車程約 1.5 小時。泰國唯一的馬車之城，也被稱為「最後的天堂」。",
+          shots: ["img/lampang-1.jpg", "img/lampang-2.jpg"] },
+        { t: "meal", name: "晚餐・米其林推薦 — 紅橋泰式餐廳", shots: ["img/red-bridge.jpg"] },
+        { t: "spot", name: "清邁夜市（昌康路）", q: "Chang Klan Road Chiang Mai Night Bazaar", zone: "尼曼・市區",
+          detail: "手工藝品、少數民族與泰式傳統服飾、十字繡衣物、手工編織包、泰絲。路邊攤要付現金。",
+          shots: ["img/night-bazaar.jpg"] },
+        hotel(K, "回宿")
+      ]
+    },
+    {
+      id: "d5", n: 5, title: "返回溫暖的家", head: "清邁機場 → 桃園機場",
+      date: "10 月 26 日（一）", tag: "10/26 MON",
+      route: "https://www.google.com/maps/dir/?api=1&origin=Kantary%20Hills%20Chiang%20Mai&destination=Chiang%20Mai%20International%20Airport&travelmode=driving",
+      note: "退稅要在機場辦，<b>護照、退稅單、買的東西</b>先整理好再去 check-in。",
+      items: [
+        { t: "meal", name: "早餐・飯店內用" },
+        hotel(K, "退房"),
+        { t: "spot", name: "清邁機場", clock: "11:50", q: "Chiang Mai International Airport",
+          zone: "清邁市區", detail: "BR258 清邁 11:50 起飛。享用早餐後稍晚專車前往機場。",
+          shots: ["img/departure.jpg"] },
+        { t: "meal", name: "午餐・機上簡餐" },
+        { t: "travel", name: "桃園機場　抵達", clock: "16:20" },
+        { t: "meal", name: "晚餐・溫暖的家" }
+      ]
+    }
+  ];
+
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+
+  function slider(shots) {
+    var box = el("div", "shots");
+    var wrap = el("div", "stripwrap");
+    var strip = el("div", "strip");
+    shots.forEach(function (src) {
+      var im = document.createElement("img");
+      im.src = src;
+      im.alt = "";
+      im.loading = "lazy";
+      im.decoding = "async";
+      im.width = 1000;
+      im.height = 750;
+      strip.appendChild(im);
+    });
+    wrap.appendChild(strip);
+    box.appendChild(wrap);
+    if (shots.length > 1) {
+      var step = function (dir) {
+        var w = strip.clientWidth + 8;
+        if (strip.scrollBy) {
+          strip.scrollBy({ left: dir * w, behavior: "smooth" });
+        } else {
+          strip.scrollLeft += dir * w;
+        }
+      };
+      [["prev", "\u2039", -1], ["next", "\u203a", 1]].forEach(function (a) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.className = "sarr " + a[0];
+        b.textContent = a[1];
+        b.setAttribute("aria-label", a[2] < 0 ? "\u4e0a\u4e00\u5f35" : "\u4e0b\u4e00\u5f35");
+        b.addEventListener("click", function () { step(a[2]); });
+        wrap.appendChild(b);
+      });
+      var dots = el("div", "dots");
+      shots.forEach(function (_, i) {
+        var d = document.createElement("i");
+        if (i === 0) d.className = "on";
+        d.addEventListener("click", function () {
+          var w = strip.clientWidth + 8;
+          if (strip.scrollTo) {
+            strip.scrollTo({ left: i * w, behavior: "smooth" });
+          } else {
+            strip.scrollLeft = i * w;
+          }
+        });
+        dots.appendChild(d);
+      });
+      box.appendChild(dots);
+      strip.addEventListener("scroll", function () {
+        var w = strip.clientWidth || 1;
+        var i = Math.round(strip.scrollLeft / w);
+        for (var k = 0; k < dots.children.length; k++) {
+          dots.children[k].className = (k === i) ? "on" : "";
+        }
+      }, { passive: true });
+      box.appendChild(el("p", "shotcap",
+        "\u5de6\u53f3\u6ed1\u52d5\uff0c\u6216\u9ede\u5169\u5074\u7bad\u982d\uff08\u5171 "
+        + shots.length + " \u5f35\uff09"));
+    }
+    return box;
+  }
+
+  function mapPanel(item) {
+    var p = el("div", "panel");
+    p.hidden = true;
+    if (item.zone) p.appendChild(el("div", "zone", "地區：" + item.zone));
+    if (item.addr) {
+      p.appendChild(el("div", "addr", item.addr));
+      if (item.tel) p.appendChild(el("div", "addr", "電話 " + item.tel));
+    }
+    var acts = el("div", "acts");
+    var open = document.createElement("a");
+    open.href = MAPS + encodeURIComponent(item.q);
+    open.target = "_blank";
+    open.rel = "noopener";
+    open.textContent = "在 Google 地圖開啟";
+    acts.appendChild(open);
+    var nav = document.createElement("a");
+    nav.href = NAVI + encodeURIComponent(item.q);
+    nav.target = "_blank";
+    nav.rel = "noopener";
+    nav.textContent = "從目前位置導航";
+    acts.appendChild(nav);
+    if (item.addr) {
+      var cp = document.createElement("button");
+      cp.type = "button";
+      cp.className = "copy";
+      cp.setAttribute("data-copy", item.addr);
+      cp.textContent = "複製地址";
+      acts.appendChild(cp);
+    }
+    p.appendChild(acts);
+    if (item.approx) {
+      p.appendChild(el("p", "hint", "手冊沒有提供這個地點的英文名稱，地圖是用中文關鍵字搜尋，可能找不到或找錯，實際位置請以現場導遊為準。"));
+    }
+    p.setAttribute("data-q", item.q);
+    return p;
+  }
+
+  function row(item) {
+    var li = el("li", item.t);
+    var top = el("div", "rowtop");
+    if (item.clock) top.appendChild(el("span", "clock", item.clock));
+
+    var panel = null;
+    if (item.q) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "name";
+      b.setAttribute("aria-expanded", "false");
+      var pin = el("span", "pin", "◉");
+      b.appendChild(pin);
+      b.appendChild(document.createTextNode(item.name));
+      top.appendChild(b);
+      panel = mapPanel(item);
+      b.addEventListener("click", function () {
+        var openNow = panel.hidden;
+        panel.hidden = !openNow;
+        b.setAttribute("aria-expanded", openNow ? "true" : "false");
+        if (openNow) embed(panel);
+      });
+    } else {
+      top.appendChild(el("span", "name", item.name));
+    }
+    li.appendChild(top);
+
+    if (item.detail) li.appendChild(el("div", "detail", item.detail));
+    if (item.approx) li.appendChild(el("div", "approx", "手冊無英文名，地圖為關鍵字搜尋"));
+    if (item.dress) {
+      var dn = el("div", "dress");
+      dn.innerHTML = item.dress;
+      li.appendChild(dn);
+    }
+    if (item.alt) {
+      var dt = document.createElement("details");
+      dt.className = "altplan";
+      dt.innerHTML = item.alt;
+      li.appendChild(dt);
+    }
+    if (item.shots && item.shots.length) li.appendChild(slider(item.shots));
+    if (panel) li.appendChild(panel);
+    return li;
+  }
+
+  function embed(panel) {
+    if (location.protocol !== "file:"
+        && !/(^|\.)github\.io$/i.test(location.hostname)) return;
+    if (panel.querySelector(".frame")) return;
+    var q = panel.getAttribute("data-q");
+    if (!q) return;
+    var f = el("div", "frame");
+    var ifr = document.createElement("iframe");
+    ifr.src = "https://maps.google.com/maps?q=" + encodeURIComponent(q) + "&z=14&output=embed";
+    ifr.loading = "lazy";
+    ifr.title = "地圖";
+    f.appendChild(ifr);
+    panel.appendChild(f);
+  }
+
+  function dayCard(d) {
+    var sec = el("section", "day");
+    sec.id = d.id;
+    var eye = el("div", "eyebrow");
+    eye.appendChild(el("h2", null, d.title));
+    eye.appendChild(el("span", null, d.tag));
+    sec.appendChild(eye);
+
+    var card = el("div", "card");
+    var head = el("div", "day-head");
+    head.appendChild(el("div", "daynum", String(d.n)));
+    var meta = el("div", "meta");
+    meta.appendChild(el("h3", null, d.head));
+    meta.appendChild(el("div", "date", d.date));
+    head.appendChild(meta);
+    card.appendChild(head);
+
+    var ol = el("ol", "line");
+    d.items.forEach(function (it) { ol.appendChild(row(it)); });
+    card.appendChild(ol);
+
+    var rb = document.createElement("a");
+    rb.className = "routebtn";
+    rb.href = d.route;
+    rb.target = "_blank";
+    rb.rel = "noopener";
+    rb.appendChild(el("span", null, "看第 " + d.n + " 天整日路線"));
+    rb.appendChild(el("span", "arrow", "→"));
+    rb.addEventListener("click", function (ev) {
+      if (openMap(d)) ev.preventDefault();
+    });
+    card.appendChild(rb);
+
+    if (d.note) {
+      var nt = el("div", "note");
+      nt.innerHTML = d.note;
+      card.appendChild(nt);
+    }
+    sec.appendChild(card);
+    return sec;
+  }
+
+  function wireCopy(scope) {
+    scope.querySelectorAll("button.copy").forEach(function (btn) {
+      if (btn.getAttribute("data-wired")) return;
+      btn.setAttribute("data-wired", "1");
+      btn.addEventListener("click", function () {
+        var text = btn.getAttribute("data-copy") || "";
+        var label = btn.textContent;
+        var restore = function (msg, ms) {
+          btn.textContent = msg;
+          btn.setAttribute("data-done", "1");
+          setTimeout(function () {
+            btn.textContent = label;
+            btn.removeAttribute("data-done");
+          }, ms);
+        };
+        var fallback = function () {
+          var scope = btn.closest(".copyline") || btn.closest(".panel") || btn.parentNode;
+          var code = scope.querySelector("code") || scope.querySelector(".addr");
+          if (!code) { restore("無法複製", 2000); return; }
+          try {
+            var r = document.createRange();
+            r.selectNodeContents(code);
+            var sel = window.getSelection();
+            sel.removeAllRanges();
+            sel.addRange(r);
+            restore("已選取，長按複製", 2600);
+          } catch (e) { restore("無法複製", 2000); }
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(text).then(function () { restore("已複製", 1600); }, fallback);
+        } else {
+          fallback();
+        }
+      });
+    });
+  }
+
+  var lb = document.getElementById("lb");
+  var lbBody = document.getElementById("lbbody");
+  var lbTitle = document.getElementById("lbtitle");
+  var lbOut = document.getElementById("lbout");
+  var mapsHost = document.getElementById("maps");
+  var shown = null;
+
+  function closeMap() {
+    if (!lb) return;
+    if (shown && mapsHost) mapsHost.appendChild(shown);
+    shown = null;
+    lb.hidden = true;
+    document.body.classList.remove("lb-open");
+  }
+
+  function openMap(d) {
+    if (!lb || !mapsHost) return false;
+    var fig = mapsHost.querySelector('figure[data-day="' + d.id + '"]');
+    if (!fig) return false;
+    closeMap();
+    lbTitle.textContent = "第 " + d.n + " 天路線圖";
+    lbOut.href = d.route;
+    lbBody.appendChild(fig);
+    shown = fig;
+    lb.hidden = false;
+    document.body.classList.add("lb-open");
+    var btn = lb.querySelector(".lbclose");
+    if (btn) btn.focus();
+    return true;
+  }
+
+  if (lb) {
+    lb.addEventListener("click", function (ev) {
+      if (ev.target === lb || ev.target.classList.contains("lbclose")) closeMap();
+    });
+    document.addEventListener("keydown", function (ev) {
+      if (ev.key === "Escape" && !lb.hidden) closeMap();
+    });
+  }
+
+  try {
+    var host = document.getElementById("days");
+    DAYS.forEach(function (d) { host.appendChild(dayCard(d)); });
+  } catch (e) {
+    var warn = el("div", "card note", "每日行程載入失敗，請改看下方的住宿、地區與實用資訊。");
+    document.getElementById("days").appendChild(warn);
+  }
+  var vshots = document.getElementById("shots-veranda");
+  if (vshots) vshots.appendChild(slider(V.pics));
+  var kshots = document.getElementById("shots-kantary");
+  if (kshots) kshots.appendChild(slider(K.pics));
+  wireCopy(document);
+})();
+</script>
+</body>
+</html>
